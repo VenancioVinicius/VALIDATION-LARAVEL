@@ -39,7 +39,7 @@ class ClienteController extends Controller
 
         $regras = [
             'nome' => 'required|max:100|min:10',
-            'email' => 'required|max:150|min:15|unique:professors',
+            'email' => 'required|max:150|min:15|unique:clientes',
         ];
 
         $msgs = [
