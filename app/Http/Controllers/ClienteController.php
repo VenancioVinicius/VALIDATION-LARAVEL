@@ -37,7 +37,19 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
 
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'email' => 'required|max:150|min:15|unique:professors',
+        ];
 
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+            "unique" => "Já existe um endereço cadastrado com esse [:attribute]!"
+        ];
+
+        $request->validate($regras, $msgs);
 
         Cliente::create([
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
