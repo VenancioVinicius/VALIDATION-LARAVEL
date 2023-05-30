@@ -12,11 +12,16 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control" 
+                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}" 
                         name="nome" 
                         placeholder="Nome"
                         value="{{old('nome')}}"
                     />
+                    @if($errors->has('nome'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('nome') }}
+                        </div>
+                    @endif
                     <label for="nome">Nome do Veterinário</label>
                 </div>
             </div>
@@ -26,11 +31,16 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="crmv" 
-                        class="form-control" 
+                        class="form-control {{ $errors->has('crmv') ? 'is-invalid' : '' }}" 
                         name="crmv" 
                         placeholder="CRMV"
                         value="{{old('crmv')}}"
                     />
+                    @if($errors->has('crmv'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('crmv') }}
+                        </div>
+                    @endif
                     <label for="CRMV">CRMV do Veterinário</label>
                 </div>
             </div>
@@ -39,13 +49,18 @@
             <div class="col" >
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Especialidade</label>
-                    <select name="especialidade_id" class="form-control">
+                    <select name="especialidade_id" class="form-control {{ $errors->has('especialidade_id') ? 'is-invalid' : '' }}">
                         @foreach ($dados_esp as $key)
                             <option value="{{ $key->id }}">
                                 {{ $key->nome }}
                             </option>
                         @endforeach
                     </select>
+                    @if($errors->has('especialidade_id'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('especialidade_id') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
